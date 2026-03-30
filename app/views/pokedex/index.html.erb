@@ -4,13 +4,32 @@
 
 <h1>Pokedex</h1>
 
-<div id="pokedex">
-  <% @pokedex.each do |pokedex| %>
-    <%= render pokedex %>
-    <p>
-      <%= link_to "Show this pokedex", pokedex %>
-    </p>
-  <% end %>
-</div>
 
 <%= link_to "New pokedex", new_pokedex_path %>
+
+<div class="container">
+  <div class="row row-cols-1 row-cols-md-3 ">
+    <% @pokedex.each do |pokedex|%>
+      <div class="col">
+        <div class="row">
+          <div class="col col-sm-3">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/<%= pokedex.pokedex_id %>.png" >
+          </div>
+          <div class="col">
+            <span class="badge bg-primary ">#<%= pokedex.pokedex_id %></span>
+            <h1 class="h4"><%= pokedex.name%></h1>
+            <p><%= pokedex.pk_type %></p>
+          </div>
+          <div class="col">
+            <%= link_to edit_pokedex_path(pokedex.id) do %>
+              <i class="btn btn-primary bi bi-pencil-square"></i>
+            <% end %>
+            <%= link_to pokedex_path(pokedex), data: { turbo_method: :delete } do %>
+              <i class="btn btn-primary bi bi-trash"></i>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
