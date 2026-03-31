@@ -1,12 +1,27 @@
-<p style="color: green"><%= notice %></p>
+<div class=""> 
+  <p style="color: green"><%= notice %></p>
 
-<% content_for :title, "Pokedex" %>
+  <% content_for :title, "Pokedex" %>
 
-<h1>Pokedex</h1>
+  <h2 class="row bg-info text-light shadow justify-content-center">Pokedex</h2>
 
 
-<%= link_to "New pokedex", new_pokedex_path %>
+  <%= link_to "New pokedex", new_pokedex_path %>
+  <div class="row">
+    <%@pokedex.each do |pokemon|%>
+      <div class="col-2 text-center p-2">
+        <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/<%= pokemon.pokedex_id %>.png"
+        class="border-bottom border-3 <%= type_color(pokemon.pk_type)%>" >
+        <p class="mb-0"><%= pokemon.pokedex_id %></p>
+        <p class="mb-0"><%= pokemon.name %></p>
+        <p class="mb-0"><%= pokemon.pk_type %></p>
+      </div>
+    <% end %>
+  </div>
+</div>
 
+
+<!--
 <div class="container">
   <div class="row row-cols-1 row-cols-md-3 ">
     <% @pokedex.each do |pokedex|%>
@@ -33,3 +48,4 @@
     <% end %>
   </div>
 </div>
+ -->

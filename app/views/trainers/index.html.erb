@@ -1,70 +1,33 @@
-<p style="color: green"><%= notice %></p>
+<div class="">
+  <p style="color: green"><%= notice %></p>
+  <% content_for :title, "Trainers" %>
 
-<% content_for :title, "Trainers" %>
+  <h2 class="row bg-info text-light shadow justify-content-center">Trainers</h2>
 
-<h1>Trainers</h1>
-<%= link_to "New trainer", new_trainer_path %>
-
-<div id="trainers">
-  <% @trainers.each do |trainer| %>
-    <%= render trainer %>
-    <p>
-      <%= link_to "Show this trainer", trainer %>
-    </p>
-  <% end %>
-</div>
-
-<!--<div class="container">
-  <% @trainers.each do |trainer| %>
-    <div class="row mt-2 rounded text-center ">
-      <div class="col-sm-2 bg-info align-items-center">
-      </div>
-      <div class="col-sm-8">
-        <div class="d-flex">
-          <h1><%= trainer.name %></h1>
-          <%= link_to 'show', trainer %>
+  <div class="container">
+    <% @trainers.each do |trainer|%>
+    <div class="row mt-2 rounded shadow-sm p-3 border">
+      <div class="d-grid col-2 text-center">
+        <img src="<%= trainer.url_image %>" class="rounded img-fluid">
+        <h5 class="text-success mt-1">$<%= trainer.money %></h5>
+      </div>  
+      <div class="col">
+        <div class="row">
+          <h3 class="col"><%= trainer.name %></h3>
+          <span class="col text-end pl-0"><%= link_to 'Show this Trainer', trainer, class:"btn btn-light"%></span>
         </div>
-        <div class="row bg-dark">
+        <div class="row">
           <%@pokemons.where(trainer_id: trainer).each do |pokemon|%>
-          <div class="col col-sm-2 bg-light">
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/<%= pokemon.pokedex_id %>.png" >
-            <p><%= pokemon.pokedex.name %></p>
-            <%=  %>
-          </div>
+            <div class="col-md-auto text-center">
+              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/<%= pokemon.pokedex_id %>.png"
+              class="border-bottom border-3 <%= type_color(pokemon.pokedex.pk_type)%>" >
+              <p class="mb-0"><%= pokemon.pokedex.name %></p>
+              <p class="mb-0"><%= pokemon.pokedex.pk_type %></p>
+            </div>
           <% end %>
         </div>
-      </div>
+      </div> 
     </div>
-  <% end %>
-</div>-->
-
-
-
-<div class="container w-50">
-  <% @trainers.each do |trainer|%>
-  <div class="row mt-2 rounded shadow-sm p-2">
-    <div class="d-grid col-2 ">
-      <img src="<%= trainer.url_image %>" class="rounded img-fluid">
-      <%= trainer.money %>
-    </div>  
-    <div class="col">
-      <div class="row">
-        <h3 class="col"><%= trainer.name %></h3>
-        <span class="col text-end pl-0"><%= link_to 'Trainer Record', trainer, class:"btn btn-light"%></span>
-      </div>
-      <div class="row">
-        <%@pokemons.where(trainer_id: trainer).each do |pokemon|%>
-          <div class="col-md-auto text-center">
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/<%= pokemon.pokedex_id %>.png"
-            class="border-bottom border-3 border-<%= type_color(pokemon.pokedex.pk_type)%>" >
-            <p class="mb-0"><%= pokemon.pokedex.name %></p>
-            <p class="mb-0"><%= pokemon.pokedex.pk_type %></p>
-          </div>
-        <% end %>
-      </div>
-    </div> 
+    <% end %>
   </div>
-  <% end %>
 </div>
-
-

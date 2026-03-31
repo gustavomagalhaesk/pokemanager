@@ -1,10 +1,12 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @pokemon %>
-
 <div>
-  <%= link_to "Edit this pokemon", edit_pokemon_path(@pokemon) %> |
-  <%= link_to "Back to pokemons", pokemons_path %>
+  <p style="color: green"><%= notice %></p>
+  <h1>teste</h1>
+  <%= render @pokemon %>
 
-  <%= button_to "Destroy this pokemon", @pokemon, method: :delete %>
+  <div>
+    <%= link_to "Edit this pokemon", edit_pokemon_path(@pokemon) %> |
+    <%= link_to "Back to pokemons", pokemons_path %>
+
+    <%= button_to "Destroy this pokemon", @pokemon, method: :delete %>
+  </div>
 </div>

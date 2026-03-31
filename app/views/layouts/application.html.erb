@@ -15,7 +15,7 @@
     <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
 
     <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
+    <link rel="icon" href="/icon.png" type="image/png">
     <link rel="apple-touch-icon" href="/icon.png">
 
     <%# Includes all stylesheet files in app/assets/stylesheets %>
@@ -23,7 +23,31 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="bg-dark">
+
+    <div class="">
+      <ul class="nav justify-content-center bg-danger fixed-top ">
+        <li class="nav-item">
+          <%= link_to "Home", root_path, class:"btn text-light" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Trainers", trainers_path, class:"btn text-light" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Pokemons", pokemons_path, class:"btn text-light" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Pokedex", pokedex_index_path, class:"btn text-light"%>
+        </li>
+      </ul>
+    </div>
+    
+    <div class="container w-75">
+      <div class="bg-light min-vh-100 p-2 py-4">
+        <%= yield %>
+      </div>
+    </div>
+
+
   </body>
 </html>
