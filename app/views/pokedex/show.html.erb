@@ -1,5 +1,8 @@
 <p style="color: green"><%= notice %></p>
 
+
+
+
 <%= render @pokedex %>
 
 <div>
@@ -7,4 +10,19 @@
   <%= link_to "Back to pokedex", pokedex_index_path %>
 
   <%= button_to "Destroy this pokedex", @pokedex, method: :delete %>
+</div>
+
+
+<div class="row text-center m-auto">
+  <div class="col-1 bg-success">
+    <%= link_to '', pokedex_path(id:(@pokedex.id - 1).to_i), class:"btn btn-primary bi bi-arrow-left" %>
+  </div>
+  <div class="col-10 bg-info">
+    <div class="container h-100">
+     <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/<%= @pokedex.id %>.png">
+    </div>
+  </div>
+  <div class="col-1 bg-success">
+    <%= link_to '', pokedex_path(id:(@pokedex.id + 1).to_i), class:"btn btn-primary bi bi-arrow-right" %>
+  </div>
 </div>
