@@ -1,11 +1,21 @@
-<% content_for :title, "New trainer" %>
+<div class="container mt-5">
+  <% content_for :title, "Novo Treinador" %>
 
-<h1>New trainer</h1>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      
+      <div class="card shadow border-0 overflow-hidden">
+        
+        <div class="card-header bg-success text-white text-center py-3">
+          <h1 class="h3 mb-0">
+            Registrar Treinador
+          </h1>
+        </div>
 
-<%= render "form", trainer: @trainer %>
-
-<br>
-
-<div>
-  <%= link_to "Back to trainers", trainers_path %>
+        <div class="card-body p-4">
+          <%= render "form", trainer: @trainer %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

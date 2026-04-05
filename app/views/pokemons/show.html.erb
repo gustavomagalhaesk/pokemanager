@@ -1,12 +1,51 @@
-<div>
-  <p style="color: green"><%= notice %></p>
-  <h1>teste</h1>
-  <%= render @pokemon %>
+<div class="container mt-5">
+  <% content_for :title, "Visualizar Pokémon" %>
 
-  <div>
-    <%= link_to "Edit this pokemon", edit_pokemon_path(@pokemon) %> |
-    <%= link_to "Back to pokemons", pokemons_path %>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      
+      <div class="card shadow border-0 overflow-hidden">
+        
+        <div class="card-header bg-info text-white text-center py-3">
+          <h1 class="h3 mb-0">Detalhes do Pokémon</h1>
+        </div>
 
-    <%= button_to "Destroy this pokemon", @pokemon, method: :delete %>
-  </div>
-</div>
+        <div class="card-body p-4">
+          
+          <div class="text-center mb-4">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/<%= @pokemon.pokedex_id %>.png" 
+                 class="rounded-circle shadow-sm border bg-light" 
+                 style="width: 120px; height: 120px; object-fit: contain;">
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-bold">Nome do Pokémon</label>
+            <p class="form-control bg-light"><%= @pokemon.pokedex.name %></p>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-bold">Tipo</label>
+              <p class="form-control bg-light text-uppercase"><%= @pokemon.pokedex.pk_type %></p>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label fw-bold">Nível</label>
+              <p class="form-control bg-light"><%= @pokemon.level %></p>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-bold">Treinador Responsável</label>
+            <p class="form-control bg-light"><%= @pokemon.trainer.name %></p>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label fw-bold">Status na Equipe</label>
+            <p class="form-control bg-light">
+              <%= @pokemon.on_team ? "Ativo no Time" : "Na Reserva (PC)" %>
+            </p>
+          </div>
+
+        </div>
+
+        <div class="card-footer bg-light d-flex justify-content-between py-3">

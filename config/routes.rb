@@ -16,4 +16,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   root "pages#home"
+  
+  get 'pokeshop', to: 'pages#pokeshop', as: 'pokeshop'
 end

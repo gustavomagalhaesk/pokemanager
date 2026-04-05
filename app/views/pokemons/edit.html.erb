@@ -1,12 +1,29 @@
-<% content_for :title, "Editing pokemon" %>
+<div class="container mt-5">
+  <% content_for :title, "Editando Pokémon: #{@pokemon.pokedex.name}" %>
 
-<h1>Editing pokemon</h1>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      
+      <div class="card shadow border-0 overflow-hidden">
+        
+        <div class="card-header bg-info text-white text-center py-3">
+          <h1 class="h3 mb-0">Editar Pokémon</h1>
+        </div>
 
-<%= render "form", pokemon: @pokemon%>
+        <div class="card-body p-4">
+          
+          <div class="text-center mb-4 bg-light rounded-circle mx-auto p-2 border shadow-sm" style="width: 120px; height: 120px;">
+            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/<%= @pokemon.pokedex_id %>.png" 
+                 class="img-fluid" 
+                 style="width: 100px; height: 100px; object-fit: contain;">
+          </div>
 
-<br>
+          <%# Renderiza o formulário de pokémon %>
+          <%= render "form", pokemon: @pokemon %>
 
-<div>
-  <%= link_to "Show this pokemon", @pokemon %> |
-  <%= link_to "Back to pokemons", pokemons_path %>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>

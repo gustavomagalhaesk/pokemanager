@@ -1,11 +1,24 @@
-<% content_for :title, "New pokemon" %>
+<div class="container mt-5">
+  <% content_for :title, "Capturar Novo Pokémon" %>
 
-<h1>New pokemon</h1>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      
+      <div class="card shadow border-0 overflow-hidden">
+        
+        <div class="card-header bg-success text-white text-center py-3">
+          <h1 class="h3 mb-0">
+            Capturar Pokémon
+          </h1>
+        </div>
 
-<%= render "form", pokemon: @pokemon %>
+        <div class="card-body p-4">
 
-<br>
+          <%= render "form", pokemon: @pokemon %>
+        </div>
 
-<div>
-  <%= link_to "Back to pokemons", pokemons_path %>
+      </div>
+
+    </div>
+  </div>
 </div>

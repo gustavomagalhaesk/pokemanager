@@ -1,9 +1,9 @@
-<%= form_with(model: pokemon) do |form| %>
+<%= form_with(model: pokemon, html: { class: "p-2" }) do |form| %>
+  
   <% if pokemon.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(pokemon.errors.count, "error") %> prohibited this pokemon from being saved:</h2>
-
-      <ul>
+    <div class="alert alert-danger">
+      <h4 class="alert-heading"><%= pluralize(pokemon.errors.count, "erro") %> impediram de salvar:</h4>
+      <ul class="mb-0">
         <% pokemon.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
@@ -11,25 +11,40 @@
     </div>
   <% end %>
 
-  <%= form.label :trainer_id, style: "display: block" %>
-  <%= form.number_field :trainer_id, value: params[:trainer] %>
-
-  <div>
-    <%= form.label :pokedex_id, style: "display: block" %>
-    <%= form.text_field :pokedex_id %>
+  <div class="mb-3">
+    <%= form.label :trainer_id, "Treinador", class: "form-label fw-bold" %>
+    <%= form.collection_select :trainer_id, Trainer.all, :id, :name, 
+        { selected: params[:trainer] || pokemon.trainer_id }, 
+        { class: "form-select" } %>
   </div>
 
-  <div>
-    <%= form.label :level, style: "display: block" %>
-    <%= form.number_field :level %>
+  <div class="mb-3">
+    <%= form.label :pokedex_id, "Espécie Pokémon", class: "form-label fw-bold" %>
+    <%= form.collection_select :pokedex_id, Pokedex.all, :id, :name, 
+        { prompt: "Selecione um Pokémon" }, 
+        { class: "form-select" } %>
   </div>
 
-  <div>
-    <%= form.label :on_team, style: "display: block" %>
-    <%= form.checkbox :on_team %>
+  <div class="row">
+    <div class="col-md-6 mb-3">
+      <%= form.label :level, "Nível", class: "form-label fw-bold" %>
+      <%= form.number_field :level, class: "form-control", placeholder: "1-100" %>
+    </div>
+
+    <div class="col-md-6 mb-3 d-flex align-items-end">
+      <div class="form-check form-switch mb-2">
+        <%= form.check_box :on_team, class: "form-check-input", role: "switch", id: "flexSwitchCheckDefault" %>
+        <%= form.label :on_team, "Está no Time?", class: "form-check-label fw-bold", for: "flexSwitchCheckDefault" %>
+      </div>
+    </div>
   </div>
 
-  <div>
-    <%= form.submit %>
+
+  <div class="d-grid gap-2">
+    <%= form.submit "Confirmar Pokémon", class: "btn btn-primary btn-lg shadow-sm" %>
+    <%= link_to "Cancelar", pokemons_path, class: "btn btn-outline-secondary" %>
   </div>
+
+
+
 <% end %>

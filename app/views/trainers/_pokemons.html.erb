@@ -1,7 +1,16 @@
+<% is_on_team = pokemons.on_team %>
+
+
 <div class="border rounded mt-1">
   <div class="row rounded border-start border-4 <%= type_color(pokemons.pokedex.pk_type) %>">
-    <div class="col-2 text-center">
+    <div class="col-2 text-center position-relative">
       <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/<%= pokemons.pokedex_id %>.png">
+
+      <% if is_on_team %>
+        <span class="position-absolute top-0 end-0 badge bg-primary text-light" style="font-size: 0.6rem;">
+          Equipe
+        </span>
+      <% end %>
     </div>
     
     <div class="col-7 p-2">

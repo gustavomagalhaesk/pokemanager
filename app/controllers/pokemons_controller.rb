@@ -3,7 +3,15 @@ class PokemonsController < ApplicationController
 
   # GET /pokemons or /pokemons.json
   def index
-    @pokemons = Pokemon.includes(:pokedex, :trainer).all
+    @pokemons = Pokemon.joins(:pokedex, :trainer).all
+
+    if params[:query].present?
+      @pokemons = @pokemons.where(
+        "pokedex.name LIKE ? OR trainers.name LIKE ?", 
+        "%#{params[:query]}%", 
+        "%#{params[:query]}%"
+      )
+    end
   end
 
   # GET /pokemons/1 or /pokemons/1.json
