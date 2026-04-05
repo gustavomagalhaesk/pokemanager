@@ -1,15 +1,21 @@
-<div class="">
+<div>
   <p style="color: green"><%= notice %></p>
   <% content_for :title, "Trainers" %>
 
   <h2 class="row bg-info text-light shadow justify-content-center">Trainers</h2>
 
+  <div class="row justify-content-end px-4">
+    <%= link_to 'Criar um Treinador', new_trainer_path, class:"btn btn-success col-2 ml-5"%>
+  </div>
+
   <div class="container">
     <% @trainers.each do |trainer|%>
     <div class="row mt-2 rounded shadow-sm p-3 border">
       <div class="d-grid col-2 text-center">
-        <img src="<%= trainer.url_image %>" class="rounded img-fluid">
-        <h5 class="text-success bg-light border border-success">$<%= trainer.money %></h5>
+        <img src="<%= trainer.url_image %>" 
+        class="rounded-top img-fluid"
+        style="width: 100%; aspect-ratio: 1 / 1; object-fit: cover;">
+        <h5 class="text-light bg-success rounded-bottom">$<%= trainer.money %></h5>
       </div>  
       <div class="col">
         <div class="row">
@@ -29,6 +35,5 @@
       </div> 
     </div>
     <% end %>
-    <%= link_to 'new', new_trainer_path %>
   </div>
 </div>

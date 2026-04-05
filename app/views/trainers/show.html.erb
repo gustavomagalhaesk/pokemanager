@@ -1,11 +1,11 @@
-<div class="">
+<div>
   <p style="color: green"><%= notice %></p>
 
   <div class="d-flex justify-content-center">
     <div class="bg-light rounded p-2 w-75 border">
-      <%= link_to '', trainers_path, class:"btn btn-primary bi bi-caret-left-fill" %>
-      <%= link_to 'Delete Trainer', @trainer, method: :delete, class:"btn btn-primary" %>
-      <%= link_to 'Edit Trainer', edit_trainer_path(@trainer), class:"btn btn-primary" %>
+      <%= link_to 'Voltar', trainers_path, class:"btn btn-outline-secondary bi bi-caret-left-fill" %>
+      <%= link_to 'Editar', edit_trainer_path(@trainer), class:"btn btn-primary" %>
+      <%= link_to 'Deletar', @trainer, method: :delete, class:"btn btn-danger" %>
       <div class="pt-2 row d-flex justify-content-center p-3">
         <img src="<%= @trainer.url_image%>" style="width: 200px ;height: 200px; object-fit: cover;" class="border rounded">
         <div class="col">
@@ -24,29 +24,7 @@
             </button>
           </div>
         </div>
-        <div class="pt-2">
-          <div class="rounded">
-            <div class="row">
-              <%@pokemons.where(trainer_id: @trainer).each do |pokemon|%>
-                <div class="border rounded mt-1">
-                  <div class="row rounded border-start border-4 <%= type_color(pokemon.pokedex.pk_type)%>">
-                    <div class="col-2 text-center">
-                      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/<%= pokemon.pokedex_id %>.png">
-                    </div>
-                    <div class="col-8 p-2">
-                      <h6 class="mb-0"><%= pokemon.pokedex.name %></h6>
-                      <p class="mb-0"><%= pokemon.pokedex.pk_type %></p>
-                      <p> Lvl: <%= pokemon.level %></p>
-                    </div>
-                    <div class="col border p-1">
-                      editar e exlcluir pokemons |botões|
-                    </div>
-                  </div>
-                </div>
-              <% end %>
-            </div>
-          </div>
-        </div>
+        <%= render partial: "shared/pokemons", collection: @trainer.pokemons %>
       </div>
     </div>
   </div>

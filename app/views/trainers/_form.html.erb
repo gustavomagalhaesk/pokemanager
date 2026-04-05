@@ -1,9 +1,9 @@
-<%= form_with(model: trainer) do |form| %>
+<%= form_with(model: trainer, html: { class: "shadow-sm p-4 border rounded bg-white" }) do |form| %>
+  
   <% if trainer.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(trainer.errors.count, "error") %> prohibited this trainer from being saved:</h2>
-
-      <ul>
+    <div class="alert alert-danger">
+      <h4 class="alert-heading"><%= pluralize(trainer.errors.count, "erro") %> impediram este treinador de ser salvo:</h4>
+      <ul class="mb-0">
         <% trainer.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
@@ -11,27 +11,27 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :trainer_id, style: "display: block" %>
-    <%= form.number_field :trainer_id %>
+  <div class="mb-3">
+    <%= form.label :name, "Nome do Treinador", class: "form-label fw-bold" %>
+    <%= form.text_field :name, class: "form-control", placeholder: "Ex: Ash Ketchum" %>
   </div>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="mb-3">
+    <%= form.label :money, "Dinheiro Inicial", class: "form-label fw-bold" %>
+    <div class="input-group">
+      <span class="input-group-text">$</span>
+      <%= form.text_field :money, class: "form-control", placeholder: "0.00" %>
+    </div>
   </div>
 
-  <div>
-    <%= form.label :money, style: "display: block" %>
-    <%= form.text_field :money %>
+  <div class="mb-4">
+    <%= form.label :url_image, "URL da Imagem de Perfil", class: "form-label fw-bold" %>
+    <%= form.text_field :url_image, class: "form-control", placeholder: "https://exemplo.com/foto.png" %>
   </div>
 
-  <div>
-    <%= form.label :url_image, style: "display: block" %>
-    <%= form.text_field :url_image %>
+  <div class="d-grid gap-2">
+    <%= form.submit "Salvar Treinador", class: "btn btn-primary btn-lg" %>
+    <%= link_to "Cancelar", trainers_path, class: "btn btn-outline-secondary" %>
   </div>
 
-  <div>
-    <%= form.submit %>
-  </div>
 <% end %>

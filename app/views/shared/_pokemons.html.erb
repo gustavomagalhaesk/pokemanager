@@ -1,0 +1,20 @@
+<div class="border rounded mt-1">
+  <div class="row rounded border-start border-4 <%= type_color(pokemons.pokedex.pk_type) %>">
+    <div class="col-2 text-center">
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/<%= pokemons.pokedex_id %>.png">
+    </div>
+    
+    <div class="col-7 p-2">
+      <h6 class="mb-0"><%= pokemons.pokedex.name %></h6>
+      <p class="mb-0 text-muted"><%= pokemons.pokedex.pk_type %></p>
+      <p class="mb-0"> Nível: <%= pokemons.level %></p>
+    </div>
+
+    <div class="col-3 p-1 d-flex align-items-center justify-content-center gap-2">
+      <%= link_to "Editar", edit_pokemon_path(pokemons), class: "btn btn-primary btn-sm" %>
+      <%= button_to "Soltar", pokemons, method: :delete, 
+          class: "btn btn-danger btn-sm text-light",
+          form: { data: { turbo_confirm: "Deseja soltar este Pokémon?" } } %>
+    </div>
+  </div>
+</div>

@@ -1,12 +1,14 @@
-<% content_for :title, "Editing trainer" %>
+<div class="container pt-3">
+  <% content_for :title, "Editing trainer" %>
 
-<h1>Editing trainer</h1>
+  <h1>Editing trainer</h1>
 
-<%= render "form", trainer: @trainer %>
+  <%= render "form", trainer: @trainer %>
 
-<br>
+  <br>
 
-<div>
-  <%= link_to "Show this trainer", @trainer %> |
-  <%= link_to "Back to trainers", trainers_path %>
+  <div>
+    <%= link_to "Show this trainer", @trainer %> |
+    <%= link_to "Back to trainers", trainers_path %>
+  </div>
 </div>
